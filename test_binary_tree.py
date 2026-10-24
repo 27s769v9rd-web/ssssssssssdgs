@@ -2,11 +2,11 @@
 
 #  File: TestBinaryTree.py
 
-#  Description:
+#  Description: Implementation and testing of binary search tree methods
 
-#  Student Name:
+#  Student Name: Jeff Zheng
 
-#  Student UT EID:
+#  Student UT EID: jrz554
 
 #  Partner Name:
 
@@ -14,11 +14,11 @@
 
 #  Course Name: CS 313E
 
-#  Unique Number:
+#  Unique Number:54970
 
-#  Date Created:
+#  Date Created: 10/22/26
 
-#  Date Last Modified:
+#  Date Last Modified: 10/23/26
 
 
 import sys
@@ -90,27 +90,52 @@ class Tree(object):
     # The range of values equals the maximum value in the binary search tree minus the minimum value.
     # If there is one value in the tree the range is 0. If the tree is empty the range is undefined.
     def range(self):
-
-
+		if self.root is None:
+			return None
+		curr = self.root
+		while curr.lChild is not None:
+			curr = curr.lChild
+		min_val = curr.data
+		curr = self.root
+		while curr.rChild is not None:
+			curr = curr.rChild
+		max_val = curr.data
+		return max_val - min_val
     # Returns a list of nodes at a given level from left to right
     def get_level(self, level):
-   
-
-
+		res = []
+		self._gut_level_helper(self.root, 0, level, res)
+		return res
+	def _get_level_helper(self, node, current_level, target_level, res):
+		if node is None:
+			return
+		if current_level == target_level:
+			res.append(node)
+		else:
+			self._get_level_helper(node.lChild, current_level + 1, target_level, res)
+			self._get_level_helper(node.rChild, current_level + 1, target_level, res)
+    # returns the sum of the value of all leaves.
     # Returns the list of the node that you see from left side
     # The order of the output should be from top to down
     def left_side_view(self):
-
-
+		res = []
+		self._left_side_view_helper(self.root, 0, res)
+		return res
+	def _left_side_view_helper(self, node, level, res):
+		if node is None:
+			return
+		if level == len(res):
+			res.append(node.data
     # returns the sum of the value of all leaves.
     # a leaf node does not have any children.
     def sum_leaf_nodes(self):
-  
-
-
-
-
-
+		return self._sum_leaf_nodes_helper(self.root)
+	def _sum_leaf_nodes_helper(self, node):
+		if node is None:
+			return
+		if node.lChild is None and node.rChild is None:
+			return node.data
+		return self._sum_leaf_nodes_helper(node.lChild) + self._sum_leaf_nodes_helper(node.rChild)
 def make_tree(data):
     tree = Tree()
     for d in data:
