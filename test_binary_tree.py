@@ -20,10 +20,9 @@
 
 #  Date Last Modified: 10/23/26
 
-
 import sys
 
-class Node (object):
+class Node(object):
     # constructor
     def __init__(self, data):
         self.data = data
@@ -87,7 +86,7 @@ class Tree(object):
                 parent.rChild = new_node
             return
 
-    # Returns the range of values stored in a binary search tree of integers.
+    # Returns the range of values stored in a binary search tree of integers.[cite: 2]
     # The range of values equals the maximum value in the binary search tree minus the minimum value.[cite: 2]
     # If there is one value in the tree the range is 0. If the tree is empty the range is undefined.[cite: 2]
     def range(self):
