@@ -10,6 +10,7 @@ Unique Number: 54970
 Date Created: 10/22/26
 Date Last Modified: 10/23/26
 """
+import sys
 
 class Node:
     """A node"""
@@ -104,7 +105,7 @@ class Tree:
         if node is None:
             return
         if current_level == target_level:
-            res.append(node.data)
+            res.append(node)
         else:
             self._get_level_helper(node.lchild, current_level + 1, target_level, res)
             self._get_level_helper(node.rchild, current_level + 1, target_level, res)
